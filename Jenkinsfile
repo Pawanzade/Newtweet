@@ -1,6 +1,6 @@
-def registry = 'https://valaxy05.jfrog.io'
-def imageName = 'valaxy05.jfrog.io/valaxy-docker-local/ttrend'
-def version   = '2.1.4'
+def registry = 'https://pwn.jfrog.io'
+def imageName = 'pwn.jfrog.io/valaxy-docker-local/ttrend'
+def version   = '2.1.2'
 pipeline {
     agent {
         node {
@@ -52,7 +52,7 @@ environment {
         steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
-                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"artfiact-cred"
+                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"Jfrog-cred"
                      def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                      def uploadSpec = """{
                           "files": [
@@ -63,7 +63,7 @@ environment {
                               "props" : "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
                             }
-                         ]
+                          ]
                      }"""
                      def buildInfo = server.upload(uploadSpec)
                      buildInfo.env.collect()
