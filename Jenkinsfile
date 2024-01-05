@@ -1,4 +1,6 @@
 def registry = 'https://pwn.jfrog.io'
+def imageName = 'pwn.jfrog.io/valaxy-docker-local/ttrend'
+def version   = '2.1.2'
 pipeline {
     agent {
         node {
@@ -59,7 +61,7 @@ environment {
                               "target": "tweet-libs-release-local/{1}",
                               "flat": "false",
                               "props" : "${properties}",
-                              "exclusions": [ "*.sha1","*.xml", "*.md5"]
+                              "exclusions": [ "*.sha1", "*.md5" ]
                             }
                           ]
                      }"""
